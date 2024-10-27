@@ -1,14 +1,16 @@
 plugins {
-    id "fabric-loom" version "1.6-SNAPSHOT"
+    id "fabric-loom" version "1.8-SNAPSHOT"
+    id ("com.modrinth.minotaur") version "2.+"
+    id ("com.matthewprenger.cursegradle") version "1.4.0"
 }
 
 repositories {}
 
-archivesBaseName = "${project.mod_id}-${project.minecraft_major_version}"
+archivesBaseName = "${project.mod_id}-${project.minecraft_version}"
 version = "${project.mod_version}"
 
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_21
 
 
 dependencies {
@@ -22,13 +24,13 @@ dependencies {
 
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"
-    it.options.release.set(17)
+    it.options.release.set(21)
 }
 
 java {
     withSourcesJar()
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+        languageVersion.set(JavaLanguageVersion.of(21))
     }
 }
 
@@ -46,3 +48,46 @@ processResources {
     }
 }
 
+modrinth {
+    token.set(System.getenv("MODRINTH_TOKEN"))
+    projectId.set("1S4LxcvL")
+    versionNumber.set("${project.version}")
+    versionName = "[1.21.2, 1.21.3] ${project.version}"
+    versionType = "release"
+    changelog.set("Release notes:\nhttps://github.com/NikitaCartes/Glowing-Torchflower/releases/tag/${project.version}")
+    uploadFile = remapJar
+    gameVersions.addAll("1.21.2", "1.21.3")
+    loaders = ["fabric", "quilt"]
+}
+
+curseforge {
+    apiKey = System.getenv("CURSEFORGE_TOKEN") ?: ""
+    project {
+        id = "827288"
+        changelogType = "markdown"
+        changelog = "Release notes:\nhttps://github.com/NikitaCartes/Glowing-Torchflower/releases/tag/${project.version}"
+        releaseType = "release"
+
+        addGameVersion("Fabric")
+        addGameVersion("Quilt")
+
+        addGameVersion("Java 21")
+
+        addGameVersion("1.21.2")
+        addGameVersion("1.21.3")
+
+        mainArtifact(remapJar) {
+            displayName = "[1.21.2, 1.21.3] ${project.version}"
+        }
+    }
+    options {
+        javaVersionAutoDetect = false
+        javaIntegration = false
+        forgeGradleIntegration = false
+    }
+}
+
+tasks.register("publish") {
+    dependsOn("modrinth")
+    dependsOn("curseforge")
+}
