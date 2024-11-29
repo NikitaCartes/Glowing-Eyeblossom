@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "id": "glowing-torchflower",
+  "id": "glowing-eyeblossom",
   "version": "${version}",
-  "name": "Glowing Torchflower",
-  "description": "Make Torchflower glow",
+  "name": "Glowing Eyeblossom",
+  "description": "Make Eyeblossom glow",
   "authors": [
     "NikitaCartes"
   ],
   "contact": {
-    "homepage": "https://github.com/NikitaCartes/Glowing-Torchflower",
-    "sources": "https://github.com/NikitaCartes/Glowing-Torchflower",
-    "issues": "https://github.com/NikitaCartes/Glowing-Torchflower/issues"
+    "homepage": "https://github.com/NikitaCartes/Glowing-Eyeblossom",
+    "sources": "https://github.com/NikitaCartes/Glowing-Eyeblossom",
+    "issues": "https://github.com/NikitaCartes/Glowing-Eyeblossom/issues"
   },
   "license": "MIT",
-  "icon": "assets/glowing-torchflower/icon.png",
+  "icon": "assets/glowing-eyeblossom/icon.png",
   "environment": "*",
   "mixins": [
-    "glowing-torchflower.mixins.json"
+    "glowing-eyeblossom.mixins.json"
   ],
   "depends": {
     "fabricloader": "*",

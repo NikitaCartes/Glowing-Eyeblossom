@@ -1,4 +1,4 @@
-package xyz.nikitacartes.glowingtorchflower.config;
+package xyz.nikitacartes.glowingeyeblossom.config;
 
 import net.fabricmc.loader.api.FabricLoader;
 import org.spongepowered.configurate.ConfigurateException;
@@ -17,7 +17,7 @@ public abstract class ConfigTemplate {
     private transient final Pattern pattern = Pattern.compile("^[^$\"{}\\[\\]:=,+#`^?!@*&\\\\\\s/]+");
     transient final String configPath;
     public static Path gameDirectory = FabricLoader.getInstance().getGameDir();
-    private static String modName = "GlowingTorchflower";
+    private static String modName = "GlowingEyeblossom";
 
     ConfigTemplate(String configPath) {
         this.configPath = configPath;

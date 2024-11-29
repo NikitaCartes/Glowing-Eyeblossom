@@ -61,7 +61,7 @@ modrinth {
     versionNumber.set("${project.version}")
     versionName = "[1.21.2, 1.21.3] ${project.version}"
     versionType = "release"
-    changelog.set("Release notes:\nhttps://github.com/NikitaCartes/Glowing-Torchflower/releases/tag/${project.version}")
+    changelog.set("Release notes:\nhttps://github.com/NikitaCartes/Glowing-Eyeblossom/releases/tag/${project.version}")
     uploadFile = remapJar
     gameVersions.addAll("1.21.2", "1.21.3")
     loaders = ["fabric", "quilt"]
@@ -72,7 +72,7 @@ curseforge {
     project {
         id = "827288"
         changelogType = "markdown"
-        changelog = "Release notes:\nhttps://github.com/NikitaCartes/Glowing-Torchflower/releases/tag/${project.version}"
+        changelog = "Release notes:\nhttps://github.com/NikitaCartes/Glowing-Eyeblossom/releases/tag/${project.version}"
         releaseType = "release"
 
         addGameVersion("Fabric")
