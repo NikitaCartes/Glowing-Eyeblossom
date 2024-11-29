@@ -8,9 +8,9 @@ Works better when installed on both the server and the client
 
 
 ### Light level
-- Open Eyeblossom: 12
-- Open Eyeblossom in the pot: 14
-- Closed Eyeblossom: 3
+- Open Eyeblossom: 4
+- Open Eyeblossom in the pot: 13
+- Closed Eyeblossom: 1
 - Closed Eyeblossom in the pot: 3
 
 ### Config

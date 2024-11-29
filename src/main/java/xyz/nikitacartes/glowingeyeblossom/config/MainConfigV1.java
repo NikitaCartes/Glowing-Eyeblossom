@@ -13,9 +13,9 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 @ConfigSerializable
 public class MainConfigV1 extends ConfigTemplate {
-    public int openEyeblossomBrightness = 12;
-    public int closedEyeblossomBrightness = 3;
-    public int openEyeblossomFlowerpotBrightness = 14;
+    public int openEyeblossomBrightness = 4;
+    public int closedEyeblossomBrightness = 1;
+    public int openEyeblossomFlowerpotBrightness = 13;
     public int closedEyeblossomFlowerpotBrightness = 3;
 
     public String configVersion = "1";
