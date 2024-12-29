@@ -70,7 +70,7 @@ modrinth {
 curseforge {
     apiKey = System.getenv("CURSEFORGE_TOKEN") ?: ""
     project {
-        id = "827288"
+        id = "1150314"
         changelogType = "markdown"
         changelog = "Release notes:\nhttps://github.com/NikitaCartes/Glowing-Eyeblossom/releases/tag/${project.version}"
         releaseType = "release"
@@ -80,11 +80,10 @@ curseforge {
 
         addGameVersion("Java 21")
 
-        addGameVersion("1.21.2")
-        addGameVersion("1.21.3")
+        addGameVersion("1.21.4")
 
         mainArtifact(remapJar) {
-            displayName = "[1.21.2, 1.21.3] ${project.version}"
+            displayName = "[1.21.4] ${project.version}"
         }
     }
     options {

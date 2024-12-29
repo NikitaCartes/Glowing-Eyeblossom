@@ -25,7 +25,7 @@ public class MainConfigV1 extends ConfigTemplate {
     }
 
     public static MainConfigV1 load() {
-        MainConfigV1 config = loadConfig(MainConfigV1.class, "main.conf");
+        MainConfigV1 config = loadConfig(xyz.nikitacartes.glowingeyeblossom.config.MainConfigV1.class, "main.conf");
         if (config == null) {
             config = new MainConfigV1();
             config.save();
@@ -40,7 +40,7 @@ public class MainConfigV1 extends ConfigTemplate {
         configValues.put("openEyeblossomFlowerpotBrightness", wrapIfNecessary(openEyeblossomFlowerpotBrightness));
         configValues.put("closedEyeblossomFlowerpotBrightness", wrapIfNecessary(closedEyeblossomFlowerpotBrightness));
         configValues.put("configVersion", wrapIfNecessary(configVersion));
-        String configTemplate = Resources.toString(getResource("config/" + configPath), UTF_8);
+        String configTemplate = Resources.toString(getResource( configResourcePath + configFilePath), UTF_8);
         return new StringSubstitutor(configValues).replace(configTemplate);
     }
 }
