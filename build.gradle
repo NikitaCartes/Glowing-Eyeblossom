@@ -57,13 +57,13 @@ processResources {
 
 modrinth {
     token.set(System.getenv("MODRINTH_TOKEN"))
-    projectId.set("1S4LxcvL")
+    projectId.set("qKbmlj4y")
     versionNumber.set("${project.version}")
-    versionName = "[1.21.2, 1.21.3] ${project.version}"
+    versionName = "[1.21.4] ${project.version}"
     versionType = "release"
     changelog.set("Release notes:\nhttps://github.com/NikitaCartes/Glowing-Eyeblossom/releases/tag/${project.version}")
     uploadFile = remapJar
-    gameVersions.addAll("1.21.2", "1.21.3")
+    gameVersions.addAll("1.21.4")
     loaders = ["fabric", "quilt"]
 }
 
