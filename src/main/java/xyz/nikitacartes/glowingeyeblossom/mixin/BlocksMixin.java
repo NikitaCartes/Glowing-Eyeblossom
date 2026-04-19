@@ -1,8 +1,8 @@
 package xyz.nikitacartes.glowingeyeblossom.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.Blocks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,47 +17,49 @@ public class BlocksMixin {
 
     @ModifyExpressionValue(method = "<clinit>",
             at = @At(value = "INVOKE",
-                    target = "Lnet/minecraft/block/AbstractBlock$Settings;create()Lnet/minecraft/block/AbstractBlock$Settings;",
+                    target = "Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;of()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;",
                     ordinal = 0),
             slice = @Slice(from = @At(value = "CONSTANT", args = "stringValue=open_eyeblossom")))
-    private static AbstractBlock.Settings modifyEyeblossom(AbstractBlock.Settings properties) {
+    private static BlockBehaviour.Properties modifyEyeblossom(BlockBehaviour.Properties properties) {
         if (config == null) {
             config = MainConfigV1.load();
         }
-        return properties.luminance(blockState -> config.openEyeblossomBrightness);
+        return properties.lightLevel(blockState -> config.openEyeblossomBrightness);
     }
 
     @ModifyExpressionValue(method = "<clinit>",
             at = @At(value = "INVOKE",
-                    target = "Lnet/minecraft/block/AbstractBlock$Settings;create()Lnet/minecraft/block/AbstractBlock$Settings;",
+                    target = "Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;of()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;",
                     ordinal = 0),
             slice = @Slice(from = @At(value = "CONSTANT", args = "stringValue=closed_eyeblossom")))
-    private static AbstractBlock.Settings modifyClosedEyeblossom(AbstractBlock.Settings properties) {
+    private static BlockBehaviour.Properties modifyClosedEyeblossom(BlockBehaviour.Properties properties) {
         if (config == null) {
             config = MainConfigV1.load();
         }
-        return properties.luminance(blockState -> config.closedEyeblossomBrightness);
+        return properties.lightLevel(blockState -> config.closedEyeblossomBrightness);
     }
 
     @ModifyExpressionValue(method = "<clinit>",
             at = @At(value = "INVOKE",
-                    target = "Lnet/minecraft/block/Blocks;createFlowerPotSettings()Lnet/minecraft/block/AbstractBlock$Settings;",
-                    ordinal = 36))
-    private static AbstractBlock.Settings modifyPottedEyeblossom(AbstractBlock.Settings properties) {
+                    target = "Lnet/minecraft/world/level/block/Blocks;flowerPotProperties()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;",
+                    ordinal = 0),
+            slice = @Slice(from = @At(value = "CONSTANT", args = "stringValue=potted_open_eyeblossom")))
+    private static BlockBehaviour.Properties modifyPottedEyeblossom(BlockBehaviour.Properties properties) {
         if (config == null) {
             config = MainConfigV1.load();
         }
-        return properties.luminance(blockState -> config.openEyeblossomFlowerpotBrightness);
+        return properties.lightLevel(blockState -> config.openEyeblossomFlowerpotBrightness);
     }
 
     @ModifyExpressionValue(method = "<clinit>",
             at = @At(value = "INVOKE",
-                    target = "Lnet/minecraft/block/Blocks;createFlowerPotSettings()Lnet/minecraft/block/AbstractBlock$Settings;",
-                    ordinal = 37))
-    private static AbstractBlock.Settings modifyPottedClosedEyeblossom(AbstractBlock.Settings properties) {
+                    target = "Lnet/minecraft/world/level/block/Blocks;flowerPotProperties()Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;",
+                    ordinal = 0),
+            slice = @Slice(from = @At(value = "CONSTANT", args = "stringValue=potted_closed_eyeblossom")))
+    private static BlockBehaviour.Properties modifyPottedClosedEyeblossom(BlockBehaviour.Properties properties) {
         if (config == null) {
             config = MainConfigV1.load();
         }
-        return properties.luminance(blockState -> config.closedEyeblossomFlowerpotBrightness);
+        return properties.lightLevel(blockState -> config.closedEyeblossomFlowerpotBrightness);
     }
 }

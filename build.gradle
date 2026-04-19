@@ -1,24 +1,24 @@
 plugins {
-    id "fabric-loom" version "1.8-SNAPSHOT"
+    id ("net.fabricmc.fabric-loom") version "1.16-SNAPSHOT"
     id ("com.modrinth.minotaur") version "2.+"
     id ("com.matthewprenger.cursegradle") version "1.4.0"
 }
 
 repositories {}
 
-archivesBaseName = "${project.mod_id}-${project.minecraft_version}"
+base.archivesName = "${project.mod_id}-${project.minecraft_version}"
 version = "${project.mod_version}"
 
-sourceCompatibility = JavaVersion.VERSION_21
-targetCompatibility = JavaVersion.VERSION_21
-
+java {
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
 
 dependencies {
     // Fabric
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation("net.fabricmc:fabric-loader:${project.loader_version}")
 
     // Hocon config
     include implementation("org.spongepowered:configurate-core:${hocon_version}")
@@ -31,13 +31,13 @@ dependencies {
 
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"
-    it.options.release.set(21)
+    it.options.release.set(25)
 }
 
 java {
     withSourcesJar()
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion.set(JavaLanguageVersion.of(25))
     }
 }
 
@@ -59,12 +59,12 @@ modrinth {
     token.set(System.getenv("MODRINTH_TOKEN"))
     projectId.set("qKbmlj4y")
     versionNumber.set("${project.version}")
-    versionName = "[1.21.4] ${project.version}"
+    versionName = "[26.1] ${project.version}"
     versionType = "release"
     changelog.set("Release notes:\nhttps://github.com/NikitaCartes/Glowing-Eyeblossom/releases/tag/${project.version}")
-    uploadFile = remapJar
-    gameVersions.addAll("1.21.4")
-    loaders = ["fabric", "quilt"]
+    uploadFile = jar
+    gameVersions.addAll("26.1")
+    loaders = ["fabric"]
 }
 
 curseforge {
@@ -76,14 +76,13 @@ curseforge {
         releaseType = "release"
 
         addGameVersion("Fabric")
-        addGameVersion("Quilt")
 
-        addGameVersion("Java 21")
+        addGameVersion("Java 25")
 
-        addGameVersion("1.21.4")
+        addGameVersion("26.1")
 
-        mainArtifact(remapJar) {
-            displayName = "[1.21.4] ${project.version}"
+        mainArtifact(jar) {
+            displayName = "[26.1] ${project.version}"
         }
     }
     options {
