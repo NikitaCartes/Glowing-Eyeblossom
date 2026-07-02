@@ -57,14 +57,15 @@ processResources {
 publishMods {
     def modrinthToken = System.getenv("MODRINTH_TOKEN") ?: ""
     def curseforgeToken = System.getenv("CURSEFORGE_TOKEN") ?: ""
+    def githubToken = System.getenv("GITHUB_TOKEN") ?: ""
 
     file = tasks.jar.archiveFile
-    dryRun = modrinthToken.isEmpty() || curseforgeToken.isEmpty()
+    dryRun = modrinthToken.isEmpty() || curseforgeToken.isEmpty() || githubToken.isEmpty()
 
     displayName = "[26.2] ${project.version}"
     version = "${project.version}"
 
-    changelog = "Release notes:\nhttps://github.com/NikitaCartes/Glowing-Eyeblossom/releases/tag/${project.version}"
+    changelog = rootProject.file("RELEASE_NOTE.md").readText()
     type = STABLE
     modLoaders.add("fabric")
 
@@ -83,4 +84,17 @@ publishMods {
 
         targets.forEach(minecraftVersions::add)
     }
+
+    github {
+        accessToken = githubToken
+        repository = "NikitaCartes/Glowing-Eyeblossom"
+        commitish = "fabric-26.1"
+        tagName = "${project.version}"
+    }
+}
+
+// Local publication for AutoTests: single-version project, `build` already puts the jar in build/libs.
+tasks.register("collectJars") {
+    group = "build"
+    dependsOn "build"
 }
