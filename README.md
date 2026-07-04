@@ -1,6 +1,6 @@
 ## Glowing Eyeblossom
 
-Makes the Eyeblossom emit light. Available for Fabric [1.19.4+] and NeoForge [26.2+].
+Makes the Eyeblossom emit light. Available for Fabric [1.20.4+] and NeoForge [26.2+].
 
 Works better when installed on both the server and the client
 
