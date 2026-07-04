@@ -1,6 +1,9 @@
 package xyz.nikitacartes.glowingeyeblossom.config;
 
+//? if fabric {
 import net.fabricmc.loader.api.FabricLoader;
+//?} else
+//import net.neoforged.fml.loading.FMLPaths;
 import org.spongepowered.configurate.ConfigurateException;
 import org.spongepowered.configurate.hocon.HoconConfigurationLoader;
 
@@ -17,7 +20,10 @@ public abstract class ConfigTemplate {
     private transient final Pattern pattern = Pattern.compile("^[^$\"{}\\[\\]:=,+#`^?!@*&\\\\\\s/]+");
     transient final String configFilePath;
     transient final String configResourcePath = "xyz/nikitacartes/glowingeyeblossom/config/";
+    //? if fabric {
     public static Path gameDirectory = FabricLoader.getInstance().getGameDir();
+    //?} else
+    /*public static Path gameDirectory = FMLPaths.GAMEDIR.get();*/
     private static String modName = "GlowingEyeblossom";
 
     ConfigTemplate(String configFilePath) {
