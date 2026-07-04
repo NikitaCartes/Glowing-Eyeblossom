@@ -1,6 +1,6 @@
 mod_id = "glowing-eyeblossom"
 mod_name = "Glowing Eyeblossom"
-mod_version = "1.3.0"
+mod_version = "1.4.0"
 display_mc = "26.2"
 
 # Bundled Hocon config libraries (Loom `include` on Fabric, shaded+relocated on NeoForge)
